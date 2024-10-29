@@ -243,7 +243,6 @@ def position_classifier(csv_file: str):
     logistic_model_F = linear_model.LogisticRegression(solver = "lbfgs", max_iter = 1000)
     logistic_model_C = linear_model.LogisticRegression(solver = "lbfgs", max_iter = 1000)
     
-    
     logistic_model_G.fit(x_train_scaled, y_train["Pos_G"])
     logistic_model_F.fit(x_train_scaled, y_train["Pos_F"])
     logistic_model_C.fit(x_train_scaled, y_train["Pos_C"])
@@ -256,9 +255,9 @@ def position_classifier(csv_file: str):
     accuracy_F = logistic_model_F.score(x_test_scaled, y_test["Pos_F"])
     accuracy_C = logistic_model_C.score(x_test_scaled, y_test["Pos_C"])
     
-    print(accuracy_G)
-    print(accuracy_F)
-    print(accuracy_C)
+    print("Guard Classification Accuracy: " + str(accuracy_G))
+    print("Forward Classification Accuracy: " + str(accuracy_F))
+    print("Center Classification Accuracy: " + str(accuracy_C))
     
     print("Classification Report for Pos_G:")
     print(classification_report(y_test['Pos_G'], pred_G))
@@ -273,10 +272,7 @@ def position_classifier(csv_file: str):
     cm_F = confusion_matrix(y_test["Pos_F"], pred_F)    
     cm_C = confusion_matrix(y_test["Pos_C"], pred_C)
     
-    
-    
     fig, axes = plt.subplots(1, 3)
-    
     
     sns.heatmap(cm_G, annot = True, ax = axes[0], cmap = "Blues")
     axes[0].set_title("Basketball Guard Confusion Matrix")
@@ -295,27 +291,3 @@ def position_classifier(csv_file: str):
     
     plt.tight_layout()
     plt.show()
-    
-      
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-        
-    
-
